@@ -1,0 +1,16 @@
+# bring up grpc services and the http application
+services:
+  webapp:
+    image: leo/webapp:0.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile.web_app
+    ports:
+      - "5000:5000"
+    links:
+      - users
+  users:
+    image: leo/grpc-users:0.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile.grpc_app
